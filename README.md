@@ -8,7 +8,7 @@ Warning, the process takes several days. You might want to hardcode the variable
 
 #Dependencies
 
-apt install libvulkan-dev swig
+apt install libvulkan-dev swig cmake
 
 pip install waifu2x-ncnn-vulkan-python python-ffmpeg
 
