@@ -10,7 +10,7 @@ Warning, the process takes several days. You might want to hardcode the variable
 
 apt install libvulkan-dev swig cmake python3-pip ninja-build
 
-pip install waifu2x-ncnn-vulkan-python python-ffmpeg
+pip install waifu2x-ncnn-vulkan-python ffmpeg-python
 
 Visit Gridcosm and make a donation! https://www.sito.org/synergy/gridcosm/
 
