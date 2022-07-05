@@ -59,24 +59,32 @@ def gen_frame_out(current):
     while (width*zoom_ratio) >= im_width:
         #If the frame does not exist
         if not exists(SCALED_FOLDER+str(frame_count).zfill(12)+".jpg"):
+            #Create a large fame using the current one
             working_frame = load_image(current+1).resize((im_width*3,im_width*3), Image.ANTIALIAS)
+            #Paste previous frame
             working_frame.paste(load_image(current),(im_width,im_width))
+            #Paste smaller versions of previous frames. The higher the resolution, the higher the number of previous scaled images to combine.
+            #Should have done an iterated loop for this, maybe when dealing with 8k...
             if (current-1) >= 0:
                 previous=load_image(current-1,folder=IMAGES_FOLDER).resize((int(math.floor(im_width/3)),int(math.floor(im_width/3))), Image.ANTIALIAS)
                 working_frame.paste(previous,(im_width+int(math.floor(im_width/3)),im_width+int(math.floor(im_width/3))))
                 if (current-2) >= 0:
                     pprevious=load_image(current-2,folder=IMAGES_FOLDER).resize((int(math.floor(im_width/9)),int(math.floor(im_width/9))), Image.ANTIALIAS)
                     working_frame.paste(pprevious,(im_width+int(math.floor(im_width/3+im_width/9)),im_width+int(math.floor(im_width/3+im_width/9)) ))
+            #Resize the the resulting frame according to current zoom level
             working_frame = working_frame.resize((int(math.floor(im_width*3*czoom_ratio)),int(math.floor(im_width*3*czoom_ratio))), Image.ANTIALIAS)
+            #Retrieve image dimensions
             nwidth, width = working_frame.size
+            #Crop the center of the image to get the desired dimension
             working_frame=working_frame.crop((math.floor((nwidth/2)-(im_width/2)),math.floor((nwidth/2)-(im_width/2)),math.floor((nwidth/2)+(im_width/2)),math.floor((nwidth/2)+(im_width/2))))
+            #Future work for performance improvement.... retire this enlargement and run the process only during the initial sync
             if ENLARGE:
                 enlarge(working_frame).save(SCALED_FOLDER+str(frame_count).zfill(12)+".jpg")
             else:
                 working_frame.save(SCALED_FOLDER+str(frame_count).zfill(12)+".jpg")
         #Quite rare condition, used to avoid generating a image smaller than the video size after a resumed run
         else:
-            nwidth, width = load_image(str(frame_count).zfill(12),folder=SCALED_FOLDER,fformat=OUTPUT_FORMAT).size
+            width = int(math.floor(im_width*3*czoom_ratio))
         frame_count=frame_count+1
         czoom_ratio=czoom_ratio*zoom_ratio
     print('   Finished {}'.format(current))
