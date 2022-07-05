@@ -4,10 +4,6 @@ for f in trims/*.mp4
 do
     	ffmpeg -y -i $f -vf reverse ${f/.mp4/_reversed.mp4}
 done
-for f in `find trims -type f |grep -v reversed`
-do
-	rm f
-done
 >fileList.txt
 >tmp.txt
 for f in trims/*_reversed.mp4
