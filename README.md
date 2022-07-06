@@ -6,6 +6,10 @@ It scrapes all images from the site,  upscales the image quality, creates interm
 
 You might want to hardcode the variable "current" to a low number, like 10, to have a small preview before a full run.
 
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kWf0khdT3Rc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 # Dependencies
 
 apt install libvulkan-dev swig cmake python3-pip ninja-build
@@ -17,6 +21,10 @@ pip install waifu2x-ncnn-vulkan-python ffmpeg-python
 If you want to rescale images externaly using https://github.com/nihui/waifu2x-ncnn-vulkan
 
 waifu2x-ncnn-vulkan -i downloaded/ -o images/ -s 8 -n 3 -g 0
+
+# Gridcosm
+
+Gridcosm is a collaborative art project in which artists from around the world contribute images to a compounding series of graphical squares. Each level of Gridcosm is made up of nine square images arranged into a 3x3 grid. The middle image is a one-third size version of the previous level. Artists add images around that center image until a new 3x3 grid is completed, then that level itself shrinks and becomes the "seed" for the next level. This process creates an ever expanding tunnel of images, the newest level a direct result of the previous level which is a result of the previous level... and so on.
 
 Visit Gridcosm and make a donation! https://www.sito.org/synergy/gridcosm/
 
