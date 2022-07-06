@@ -7,8 +7,8 @@ It scrapes all images from the site,  upscales the image quality, creates interm
 You might want to hardcode the variable "current" to a low number, like 10, to have a small preview before a full run.
 
 <p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kWf0khdT3Rc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+
+{% include youtubePlayer.html id=kWf0khdT3Rc %}
 
 # Dependencies
 
