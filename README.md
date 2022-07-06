@@ -1,3 +1,7 @@
+---
+youtubeId: kWf0khdT3Rc
+---
+
 # gridcosmpy
 
 A python script to generate flythrough videos zooming in and out the gridcosm project.
@@ -8,7 +12,7 @@ You might want to hardcode the variable "current" to a low number, like 10, to h
 
 <p align="center">
 
-{% include youtubePlayer.html id=kWf0khdT3Rc %}
+{% include youtubePlayer.html id=page.youtubeId %}
 
 # Dependencies
 
