@@ -1,6 +1,6 @@
 # gridcosmpy
 
-A python script to generate flythrough videos zooming in and out the gridcosm project. Watch a demo here https://www.youtube.com/kWf0khdT3Rc
+A python script to generate flythrough videos zooming in and out the gridcosm project. Watch a demo here https://www.youtube.com/embed/kWf0khdT3Rc
 
 It scrapes all images from the site,  upscales the image quality, creates intermediary frames, and uses ffmpeg to generate videos. Multiprocessing is available.
 
