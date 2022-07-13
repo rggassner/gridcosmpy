@@ -96,6 +96,28 @@ def gen_video():
     .filter('crop',im_width,int(math.floor(im_width/1.77777)))
     .output('gridcosmpy.mp4')
     .run())
+    
+def gen_video_reversed():
+    output = ( ffmpeg
+    .input('reversed/tmp/'+'*.jpg', pattern_type='glob', framerate=25)
+    .output('gridcosmpy_reversed.mp4')
+    .run(quiet=True))
+
+def split_images():
+    output= (ffmpeg
+    .input('gridcosmpy.mp4')
+    .output('reversed/%d.jpg', start_number=0)
+    .overwrite_output()
+    .run(quiet=True))
+
+def rename_reversed():
+    largest=0
+    for filename in os.listdir('reversed'):
+        if filename.endswith('.jpg'): 
+            if int(Path(filename).stem) > largest:
+                largest=int(Path(filename).stem)
+    for num in range(0,int(largest+1)):
+        os.rename('reversed/'+str(num)+'.jpg','reversed/tmp/'+str(largest-num).zfill(12)+'.jpg')
 
 session = requests.session()
 session.mount('https://', TLSAdapter())
@@ -103,4 +125,6 @@ current=get_current(session=session)
 sync_images(current,session=session)
 gen_frames_out(current)
 gen_video()
-
+split_images()
+rename_reversed()
+gen_video_reversed()
