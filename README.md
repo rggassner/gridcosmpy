@@ -18,7 +18,7 @@ pip install waifu2x-ncnn-vulkan-python ffmpeg-python
 
 If you want to rescale images externaly using https://github.com/nihui/waifu2x-ncnn-vulkan
 
-waifu2x-ncnn-vulkan -i downloaded/ -o images/ -s 8 -n 3 -g 0
+waifu2x-ncnn-vulkan -f png -i downloaded/ -o images/ -s 8 -n 3 -g 0
 
 # Gridcosm
 
