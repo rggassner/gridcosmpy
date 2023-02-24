@@ -6,6 +6,8 @@ It scrapes all images from the site,  upscales the image quality, creates interm
 
 You might want to hardcode the variable "current" to a low number, like 10, to have a small preview before a full run.
 
+The scripts under the folder str2imgzoom are able to generate image content from text using stable diffusion, that can be afterwards fed into gridcosmpy for animation. A proof of concept video using Escher, HR Giger sytles with Philip K. Dick texts can be found at https://youtu.be/m-EoMtV9uO4
+
 
 
 # Dependencies
