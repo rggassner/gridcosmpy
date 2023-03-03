@@ -13,7 +13,6 @@ IMAGES_FOLDER="input_upscaled/"
 SCALED_FOLDER="output_frames/"
 NPROCS=5
 INPUT_FORMAT='png'
-OUTPUT_FORMAT='jpg'
 
 def load_image(filename,folder=IMAGES_FOLDER,fformat=INPUT_FORMAT):
     filename=folder+str(filename)+'.'+fformat
@@ -99,17 +98,22 @@ def rename_reversed():
     for num in range(0,int(largest+1)):
         os.rename('reversed/'+str(num)+'.jpg','reversed/tmp/'+str(largest-num).zfill(12)+'.jpg')
 
+def get_current():
+    count=0
+    for path in os.listdir(IMAGES_FOLDER):
+        if os.path.isfile(os.path.join(IMAGES_FOLDER, path)):
+            count += 1
+    return count
 
 argParser = argparse.ArgumentParser()
 argParser.add_argument("-r", "--rate",type=int, required=True,help="Image rate. This is the division of the external image size by the internal image size. Tested with 3 (gridcosm) and 4 (str2imgzoom).")
 args = argParser.parse_args()
 imrate=args.rate
 im_width=get_image_size()
-current=32
+current=get_current()
 gen_frames_out(current)
 gen_video()
 split_images()
 rename_reversed()
 gen_video_reversed()
 #assure output croped size is 4k, no matter what input size it is, or maybe even select output resolution
-#read the number of input images - make current variable dynamic
