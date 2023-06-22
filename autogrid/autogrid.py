@@ -48,7 +48,8 @@ def gen_images(prompt,negative_prompt,steps):
     out_dir=str(datetime.datetime.now().timestamp())
     os.mkdir(out_dir)
     image,mask,rows=get_image_mask_rows()
-    pipe = StableDiffusionInpaintPipeline.from_pretrained( "runwayml/stable-diffusion-inpainting",torch_dtype=torch.float16).to('cuda')
+    #pipe = StableDiffusionInpaintPipeline.from_pretrained( "runwayml/stable-diffusion-inpainting",torch_dtype=torch.float16).to('cuda')
+    pipe = StableDiffusionInpaintPipeline.from_pretrained( "5w4n/deliberate-v2-inpainting",torch_dtype=torch.float16).to('cuda')
     if allow_nsfw:
         pipe.safety_checker = dummy
     for iteration in range(1,noptions):
@@ -63,7 +64,7 @@ def gen_images(prompt,negative_prompt,steps):
             for col in range(0,3):
                 if len(data[col].find_all('img')) != 1:
                     outi = resized.crop((col*tile_size,(rowcount-1)*tile_size,(col+1)*tile_size,rowcount*tile_size))
-                    outi.save(out_dir+'/'+str(iteration)+'/'+str(col)+'-'+str(rowcount)+'.png')
+                    outi.save(out_dir+'/'+str(iteration)+'/'+str(col+1)+'-'+str(rowcount)+'.png')
             rowcount=rowcount+1
 
 def main():
