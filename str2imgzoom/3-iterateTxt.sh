@@ -2,6 +2,7 @@
 IFS=$'\n'
 count=1
 mkdir tmp/img -p
+mkdir out -p
 function goption {
 			echo "Choose image $count: $line"
 			read option
